@@ -14,6 +14,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
+  ignorePatterns: ['**/*.d.ts'],
   rules: {
     // 'import/first': 'off',
     // 'import/no-duplicates': 'off',
