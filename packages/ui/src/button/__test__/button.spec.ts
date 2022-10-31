@@ -9,6 +9,6 @@ describe('Button', () => {
     });
 
     console.log('wrapper', wrapper.text());
-    expect(wrapper.text()).toBe('Ad');
+    expect(wrapper.text()).toBe('AdButton');
   });
 });
