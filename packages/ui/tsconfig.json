@@ -4,6 +4,7 @@
     "module": "ESNext",
     "moduleResolution": "Node",
     "strict": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "isolatedModules": true,
