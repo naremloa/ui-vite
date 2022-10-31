@@ -35,7 +35,10 @@
     "vitest": "^0.24.3"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,vue,md}": [
+    "**/*.json": [
+      "pnpm test:changed"
+    ],
+    "**/*.{js,ts,tsx,vue,md}": [
       "pnpm lint",
       "pnpm test:changed"
     ]

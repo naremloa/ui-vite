@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+console.log('start');
+</script>
 <script lang="ts">
 import { defineComponent } from 'vue';
 
