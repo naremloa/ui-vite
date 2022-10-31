@@ -42,7 +42,7 @@ export const config: UserConfig = {
       entry: './src/entry.ts',
       name: 'SmartyUI',
       fileName: 'smarty-ui',
-      formats: ['es'],
+      formats: ['es', 'umd'],
     },
     outDir: './dist',
   },
