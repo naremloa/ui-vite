@@ -42,7 +42,7 @@
     "**/*.json": [
       "pnpm test:changed"
     ],
-    "**/*.{js,ts,tsx,vue,md}": [
+    "**/*.{js,ts,tsx,vue}": [
       "pnpm lint",
       "pnpm test:changed"
     ]
