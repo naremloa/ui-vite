@@ -7,7 +7,7 @@
     "dev": "vite -c ./vite.config.ts",
     "build:component": "esno ./scripts/build-component.ts",
     "lint": "eslint --fix --ext .ts,.vue src",
-    "test": "vitest run"
+    "test": "vitest run --changed"
   },
   "keywords": [],
   "author": "",
