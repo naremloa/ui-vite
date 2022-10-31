@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "vite packages/ui",
+    "prepare": "husky install",
+    "ui:dev": "pnpm run -r --filter ui dev",
     "build": "vite build packages/ui",
     "build:component": "pnpm -r --filter ui build:component",
-    "test": "vitest",
+    "test": "pnpm run -r test",
     "lint": "pnpm run -r lint",
-    "docs:dev": "vitepress dev docs",
-    "prepare": "husky install"
+    "docs:dev": "vitepress dev docs"
   },
   "keywords": [],
   "author": "",
