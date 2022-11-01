@@ -1,14 +1,12 @@
-name: CI
+name: Release
+
 on:
   push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
+    tags:
+      - 'v*'
 
 jobs:
-  lint:
+  check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -27,32 +25,19 @@ jobs:
       - name: Lint
         run: pnpm run lint
 
-  typecheck:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2
-
-      - name: Set node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16.x
-
-      - name: Install
-        run: pnpm install
-
       - name: Typecheck
         run: pnpm run typecheck
 
-  test:
+      - name: Test
+        run: pnpm run test
+
+  release:
+    needs: check
     runs-on: ubuntu-latest
-
-    timeout-minutes: 10
-
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -61,9 +46,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16.x
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
 
-      - name: Install
-        run: pnpm install
-
-      - name: Test
-        run: pnpm run test
+      - run: npx changelogithub
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{secrets.RELEASE_TOKEN}}
