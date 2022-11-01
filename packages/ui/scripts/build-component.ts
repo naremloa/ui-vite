@@ -1,6 +1,6 @@
 import { config } from '../vite.config';
 import { build, LibraryOptions, UserConfig } from 'vite';
-import { resolve } from 'path';
+import { resolve } from 'node:path';
 import { readdir, lstat } from 'fs-extra';
 
 const pathResolve = (...path: string[]) => resolve(__dirname, '../', ...path);
@@ -28,7 +28,7 @@ const buildCommand = async () => {
 
   for (const component of componentList) {
     const outDir = resolve(
-      pathResolve(config.build.outDir || 'dist'),
+      pathResolve(config.build?.outDir || 'dist'),
       component,
     );
     const custom: { lib: LibraryOptions; outDir: string } = {
@@ -36,8 +36,10 @@ const buildCommand = async () => {
         entry: pathResolve('src', component, 'index.ts'),
         name: component,
         fileName: 'index',
-        formats:
-          config.build.lib !== false ? config.build.lib.formats : ['es', 'umd'],
+        formats: (config.build?.lib && config.build.lib.formats) || [
+          'es',
+          'umd',
+        ],
       },
       outDir,
     };

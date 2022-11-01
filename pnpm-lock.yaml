@@ -52,7 +52,6 @@ importers:
       '@vue/test-utils': ^2.2.0
       esno: ^0.16.3
       fs-extra: ^10.1.0
-      glob: ^8.0.3
       happy-dom: ^7.6.6
       typescript: ^4.8.4
       vite: ^3.2.0
@@ -71,7 +70,6 @@ importers:
       '@vue/test-utils': 2.2.0_vue@3.2.41
       esno: 0.16.3
       fs-extra: 10.1.0
-      glob: 8.0.3
       happy-dom: 7.6.6
       typescript: 4.8.4
       vite: 3.2.0
@@ -2016,17 +2014,6 @@ packages:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
-    dev: true
-
-  /glob/8.0.3:
-    resolution: {integrity: sha512-ull455NHSHI/Y1FqGaaYFaLGkNMMJbavMrEGFXG/PGrg6y7sutWHUHrz6gy6WEBH6akM1M414dWKCNs+IhKdiQ==}
-    engines: {node: '>=12'}
-    dependencies:
-      fs.realpath: 1.0.0
-      inflight: 1.0.6
-      inherits: 2.0.4
-      minimatch: 5.1.0
-      once: 1.4.0
     dev: true
 
   /globals/13.17.0:
