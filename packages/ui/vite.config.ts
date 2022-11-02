@@ -6,6 +6,7 @@ import Unocss from '@unocss/vite';
 import presetUno from '@unocss/preset-uno';
 import presetAttributify from '@unocss/preset-attributify';
 import presetIcons from '@unocss/preset-icons';
+import { PROJECT_FILE_NAME, PROJECT_NAME } from './const';
 
 const isProduction = process.env.NODE_ENV === 'production';
 console.log('isProduction', isProduction);
@@ -33,6 +34,7 @@ export const config: UserConfig = {
     rollupOptions: {
       external: ['vue', 'vue-router'],
       output: {
+        assetFileNames: `assets/${PROJECT_FILE_NAME}.[ext]`,
         globals: {
           vue: 'Vue',
         },
@@ -40,8 +42,8 @@ export const config: UserConfig = {
     },
     lib: {
       entry: './src/entry.ts',
-      name: 'SmartyUI',
-      fileName: 'smarty-ui',
+      name: PROJECT_NAME,
+      fileName: 'entry',
       formats: ['es', 'umd'],
     },
     outDir: './dist',

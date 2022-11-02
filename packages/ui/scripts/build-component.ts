@@ -1,7 +1,9 @@
 import { config } from '../vite.config';
-import { build, LibraryOptions, UserConfig } from 'vite';
+import { build } from 'vite';
 import { resolve } from 'node:path';
 import { readdir, lstat } from 'fs-extra';
+import { produce } from 'immer';
+import { PROJECT_FILE_NAME } from '../const';
 
 const pathResolve = (...path: string[]) => resolve(__dirname, '../', ...path);
 
@@ -31,26 +33,39 @@ const buildCommand = async () => {
       pathResolve(config.build?.outDir || 'dist'),
       component,
     );
-    const custom: { lib: LibraryOptions; outDir: string } = {
-      lib: {
-        entry: pathResolve('src', component, 'index.ts'),
-        name: component,
-        fileName: 'index',
-        formats: (config.build?.lib && config.build.lib.formats) || [
-          'es',
-          'umd',
-        ],
-      },
-      outDir,
-    };
-    const buildConfig: UserConfig = {
-      ...config,
-      build: {
-        ...config.build,
-        emptyOutDir: false,
-        ...custom,
-      },
-    };
+    const buildConfig = produce(config, (draft) => {
+      if (draft.build) {
+        draft.build.emptyOutDir = false;
+        draft.build.lib = {
+          entry: pathResolve('src', component, 'index.ts'),
+          name: component,
+          fileName: 'index',
+          formats: (config.build?.lib && config.build.lib.formats) || [
+            'es',
+            'umd',
+          ],
+        };
+        draft.build.outDir = outDir;
+        if (draft.build.rollupOptions) {
+          if (!Array.isArray(draft.build.rollupOptions.output)) {
+            draft.build.rollupOptions.output = {
+              ...(draft.build.rollupOptions.output || {}),
+              assetFileNames: `assets/${component}.[ext]`,
+            };
+          }
+        } else {
+          draft.build.rollupOptions = {
+            external: ['vue'],
+            output: {
+              assetFileNames: `assets/${PROJECT_FILE_NAME}.[ext]`,
+              globals: {
+                vue: 'Vue',
+              },
+            },
+          };
+        }
+      }
+    });
     console.log('buildConfig', buildConfig);
     await build({ ...buildConfig, configFile: false });
   }

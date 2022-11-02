@@ -1,5 +1,5 @@
 {
-  "name": "admin-ui",
+  "name": "admin",
   "version": "1.0.0",
   "private": "true",
   "packageManager": "pnpm@7.14.0",
@@ -8,8 +8,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "prepare": "simple-git-hooks",
-    "ui:dev": "pnpm run -r --filter ui dev",
-    "build": "vite build packages/ui",
+    "dev:ui": "pnpm run -r --filter ui dev",
+    "dev:docs": "pnpm run -r --filter docs dev",
     "build:component": "pnpm -r --filter ui build:component",
     "test": "pnpm run -r test",
     "test:changed": "pnpm run -r test:changed",

@@ -4,9 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "vitepress dev",
     "test": "echo \"Error: no test specified\""
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "1.0.0-alpha.26"
+  },
+  "dependencies": {
+    "@admin/ui": "workspace:^1.0.0"
+  }
 }
