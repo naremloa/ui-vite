@@ -25,6 +25,16 @@ export const config: UserConfig = {
     globals: true,
     environment: 'happy-dom',
   },
+  css: {
+    preprocessorOptions: {
+      less: {
+        javascriptEnabled: true,
+        modifyVars: {
+          'primary-color': '#003552',
+        },
+      },
+    },
+  },
   build: {
     emptyOutDir: true,
     cssCodeSplit: true,
