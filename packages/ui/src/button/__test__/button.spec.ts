@@ -1,14 +1,12 @@
-import { AdButton } from '../../button';
-import { shallowMount } from '@vue/test-utils';
+import { AdButton } from '../';
+import { mount } from '@vue/test-utils';
 import { describe, expect, test } from 'vitest';
 
 describe('Button', () => {
   test('Mount', () => {
-    const wrapper = shallowMount(AdButton, {
+    const wrapper = mount(AdButton, {
       slots: { default: 'AdButton' },
     });
-
-    console.log('wrapper', wrapper.text());
-    expect(wrapper.text()).toBe('AdButton');
+    expect(wrapper.get('span').text()).toBe('AdButton');
   });
 });
